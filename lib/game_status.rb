@@ -19,7 +19,17 @@ end
 
 
 def won?(board)
+<<<<<<< HEAD
 
+=======
+#  i = 1
+#  for empty_board in board
+#    if !position_taken?(board, i)
+#      return false
+  #    i += 1
+  #  end
+#  end
+>>>>>>> cf6abec9b8e556b7119b2bad3b37d8f0feb383ba
   for win_combination in WIN_COMBINATIONS
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
@@ -37,6 +47,7 @@ def won?(board)
       false
     end
   end
+<<<<<<< HEAD
 
 
   counter = 0
@@ -47,10 +58,22 @@ def won?(board)
     else
      return false
      counter += 1
+=======
+  
+  counter = 0
+  while counter < board.length-1
+    if position_taken?(board, counter)
+      return !position_taken?(board, counter)
+      counter +=1
+    else
+      return position_taken?(board, counter)
+      counter += 1
+>>>>>>> cf6abec9b8e556b7119b2bad3b37d8f0feb383ba
     end
   end
 end
 
+<<<<<<< HEAD
 def full?(board)
   board.each do |full_board|
     if full_board == "X" || full_board == "O"
@@ -128,7 +151,80 @@ def winner(board)
       return "O"
   elsif won?(board) && board[2] == "O" && board[4] == "O" && board[6] == "O"
       return "O"
+=======
+
+def full?(board)
+  counter = 0
+  full = false
+  while counter < board.length-1
+    if position_taken?(board, counter)
+       full = true
+       counter += 1 
+    else
+       full = false
+       break
+     end
+    end
+    return full
+  end
+  
+  def draw?(board)
+    counter = 0
+    draw = false
+    wonTopRow = true
+    wonDiagonaly = true
+    gameInProgress = true
+    
+    while counter < board.length-1
+      if position_taken?(board, counter)
+         draw = true
+         counter += 1
+      
+      elsif !position_taken?(board, counter)
+         draw = false
+         break
+      end
+    end
+   
+      if (board[0] == "X" && board[1] == "X" && board[2]  == "O") || (board[0] == "O" && board[1] == "O"  && board[2] == "O")
+          wonTopRow = false
+          return wonTopRow
+    
+    elsif (board[0] == "X" && board[4] == "X" &&            board[8] == "X" ) || (board[0] == "O" &&          board[4] == "O" && board[8] == "O")
+          wonDiagonaly = false
+          return wonDiagonaly
+          
+    elsif (board[2] == "X" && board[4] == "X" && board[6] == "X" ) ||
+          (board[2] == "O" && board[4] == "O" && board[6] == "O")
+          wonDiagonaly = false
+          return wonDiagonaly
+    
+    elsif full?(board) == false
+          gameInProgress = false
+          return gameInProgress
+          
+      end
+    return draw
+  end
+  
+  def winner(board)
+  
+  if (won?(board) && board[0] == "O" && board[1] == "O"  && board[2] == "O") || (won?(board) && board[3] == "O" && board[4] == "O"  && board[5] == "O") || (won?(board) && board[6] == "O" && board[7] == "O"  && board[8] == "O") || (won?(board) && board[0] == "O" && board[3] == "O"  && board[6] == "O") || (won?(board) && board[1] == "O" && board[4] == "O"  && board[7] == "O") || (won?(board) && board[2] == "O" && board[5] == "O"  && board[8] == "O") || (won?(board) && board[0] == "O" && board[4] == "O"  && board[8] == "O") || (won?(board) && board[2] == "O" && board[4] == "O"  && board[6] == "O")
+    return "O"
+  elsif
+    (won?(board) && board[0] == "X" && board[1] == "X"  && board[2] == "X") || (won?(board) && board[3] == "X" && board[4] == "X"  && board[5] == "X") || (won?(board) && board[6] == "X" && board[7] == "X"  && board[8] == "X") || (won?(board) && board[0] == "X" && board[3] == "X"  && board[6] == "X") || (won?(board) && board[1] == "X" && board[4] == "X"  && board[7] == "X") || (won?(board) && board[2] == "X" && board[5] == "X"  && board[8] == "X") || (won?(board) && board[0] == "X" && board[4] == "X"  && board[8] == "X") || (won?(board) && board[2] == "X" && board[4] == "X"  && board[6] == "X")
+      return "X"
+>>>>>>> cf6abec9b8e556b7119b2bad3b37d8f0feb383ba
   else
     return nil
   end
 end
+<<<<<<< HEAD
+=======
+
+      
+        
+         
+    
+      
+>>>>>>> cf6abec9b8e556b7119b2bad3b37d8f0feb383ba
